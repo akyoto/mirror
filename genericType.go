@@ -17,8 +17,8 @@ func newGenericType(typ reflect.Type) *genericType {
 	}
 }
 
-func (typ *genericType) Set(obj interface{}, val interface{}) {
-	objIFace := unpack(obj)
-	valIFace := unpack(val)
-	typedmemmove(typ.typePtr, objIFace.data, valIFace.data)
+func (typ *genericType) Set(object interface{}, value interface{}) {
+	objectIFace := unpack(object)
+	valueIFace := unpack(value)
+	typedmemmove(typ.typePtr, objectIFace.data, valueIFace.data)
 }

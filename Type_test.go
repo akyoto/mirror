@@ -8,7 +8,13 @@ import (
 	"github.com/akyoto/mirror"
 )
 
-func TestTypeOf(t *testing.T) {
+type A struct {
+	B int
+	C string
+	D *int
+}
+
+func TestKind(t *testing.T) {
 	// Run these statements twice to test the type caching
 	for i := 0; i < 2; i++ {
 		assert.Equal(t, mirror.TypeOf(true).Kind(), reflect.Bool)
@@ -16,4 +22,20 @@ func TestTypeOf(t *testing.T) {
 		assert.Equal(t, mirror.TypeOf("Hello").Kind(), reflect.String)
 		assert.Equal(t, mirror.TypeOf(struct{}{}).Kind(), reflect.Struct)
 	}
+}
+
+func TestSet(t *testing.T) {
+	i := 0
+	typ := mirror.TypeOf(i)
+	assert.Equal(t, i, 0)
+	typ.Set(&i, 1)
+	assert.Equal(t, i, 1)
+}
+
+func TestSetField(t *testing.T) {
+	a := A{}
+	typ := mirror.TypeOf(a).(mirror.StructType)
+	assert.Equal(t, a.B, 0)
+	typ.SetField(&a, "B", 1)
+	assert.Equal(t, a.B, 1)
 }
