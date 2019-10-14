@@ -14,3 +14,9 @@ type StructType interface {
 	SetField(object interface{}, fieldName string, value interface{})
 	SetFieldByJSONTag(object interface{}, fieldName string, value interface{})
 }
+
+// PointerType gives you access to pointers.
+type PointerType interface {
+	Type
+	Elem() Type
+}

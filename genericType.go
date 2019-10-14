@@ -22,3 +22,7 @@ func (typ *genericType) Set(object interface{}, value interface{}) {
 	valueIFace := unpack(value)
 	typedmemmove(typ.typePtr, objectIFace.data, valueIFace.data)
 }
+
+func (typ *genericType) Elem() Type {
+	return upgradeType(typ.Type.Elem())
+}
