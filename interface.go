@@ -1,4 +1,4 @@
-package reflect
+package mirror
 
 import "unsafe"
 

@@ -1,6 +1,9 @@
-package reflect
+package mirror
 
-import "sync"
+import (
+	"reflect"
+	"sync"
+)
 
 var typeCache sync.Map
 
@@ -13,5 +16,7 @@ func TypeOf(obj interface{}) Type {
 		return typeObj.(Type)
 	}
 
-	return nil
+	typ := newGenericType(reflect.TypeOf(obj))
+	typeCache.Store(key, typ)
+	return typ
 }

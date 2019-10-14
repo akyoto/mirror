@@ -1,10 +1,8 @@
-package reflect
+package mirror
 
-import (
-	std "reflect"
-)
+import "reflect"
 
 // Type gives you access to information about the data type.
 type Type interface {
-	Kind() std.Kind
+	Kind() reflect.Kind
 }

@@ -1,2 +1,4 @@
 github.com/akyoto/assert v0.2.1 h1:oJ7kI9ITN0rQWkjDcc4FbaYMehVppAKtCcEWyPbRGik=
 github.com/akyoto/assert v0.2.1/go.mod h1:g5e6ag+ksCEQENq/LnmU9z04wCAIFDr8KacBusVL0H8=
+github.com/akyoto/reflect v0.0.0-20191014061518-2f720893c17f h1:UJqkUKPv8N/xfYlDoUOOIP4+qvtC/hXcr9bAEyNye/g=
+github.com/akyoto/reflect v0.0.0-20191014061518-2f720893c17f/go.mod h1:v8GxlmbPqUIKEuayN7QXSx3qjF3wVhvdItLUp+yKty0=
