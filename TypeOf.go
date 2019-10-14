@@ -16,7 +16,16 @@ func TypeOf(obj interface{}) Type {
 		return typeObj.(Type)
 	}
 
-	typ := newGenericType(reflect.TypeOf(obj))
+	typ := wrapType(reflect.TypeOf(obj))
 	typeCache.Store(key, typ)
 	return typ
+}
+
+func wrapType(typ reflect.Type) Type {
+	switch typ.Kind() {
+	case reflect.Struct:
+		return newStructType(typ)
+	default:
+		return newGenericType(typ)
+	}
 }
