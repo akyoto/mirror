@@ -9,9 +9,9 @@ import (
 )
 
 type A struct {
-	B int
-	C string
-	D *int
+	B int    `json:"b"`
+	C string `json:"c"`
+	D *int   `json:"d"`
 }
 
 func TestKind(t *testing.T) {
@@ -38,4 +38,32 @@ func TestSetField(t *testing.T) {
 	assert.Equal(t, a.B, 0)
 	typ.SetField(&a, "B", 1)
 	assert.Equal(t, a.B, 1)
+}
+
+func TestSetJSONField(t *testing.T) {
+	a := A{}
+	typ := mirror.TypeOf(a).(mirror.StructType)
+	assert.Equal(t, a.B, 0)
+	typ.SetFieldByJSONTag(&a, "b", 1)
+	assert.Equal(t, a.B, 1)
+}
+
+func BenchmarkSetField(b *testing.B) {
+	a := A{}
+	typ := mirror.TypeOf(a).(mirror.StructType)
+	b.ReportAllocs()
+
+	for i := 0; i < b.N; i++ {
+		typ.SetField(&a, "B", 1)
+	}
+}
+
+func BenchmarkSetFieldByJSONTag(b *testing.B) {
+	a := A{}
+	typ := mirror.TypeOf(a).(mirror.StructType)
+	b.ReportAllocs()
+
+	for i := 0; i < b.N; i++ {
+		typ.SetFieldByJSONTag(&a, "b", 1)
+	}
 }

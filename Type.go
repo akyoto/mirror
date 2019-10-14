@@ -12,4 +12,5 @@ type Type interface {
 type StructType interface {
 	Type
 	SetField(object interface{}, fieldName string, value interface{})
+	SetFieldByJSONTag(object interface{}, fieldName string, value interface{})
 }
